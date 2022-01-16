@@ -1,5 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/tweets', [IndexController::class, 'tweets'])->name('tweets');
 
-Route::get('/settings/', [\App\Http\Controllers\SettingController::class, 'index'])->name('settings');
-Route::post('/settings/update/{setting}', [\App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');
+Route::get('/settings/', [SettingController::class, 'index'])->name('settings');
+Route::post('/settings/update/{setting}', [SettingController::class, 'update'])->name('settings.update');
 
-Route::get('/api/', [\App\Http\Controllers\ApiController::class, 'index'])->name('api.index');
+Route::get('/api/', [ApiController::class, 'index'])->name('api.index');

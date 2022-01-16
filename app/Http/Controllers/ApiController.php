@@ -30,13 +30,14 @@ class ApiController extends Controller
     {
         $requestedValues = explode(',', $request->get('search'));
 
-        $config = $this->twitterService->setConfig();
-        $client = $this->twitterService->setClient($config);
+        $config = $this->twitterService->getConfig();
+        $client = $this->twitterService->getClient();
 
         // Get recent tweets by giving query values
         $tweets = $client->tweetSearch()
             ->addMaxResults(intval($config[Settings::TWITTER_LIMIT->value]))
             ->addFilterOnKeywordOrPhrase($requestedValues)
+            ->showUserDetails()
             ->performRequest();
         /*
         // Get ids of tweets and get whole detail of tweets such as full url etc.

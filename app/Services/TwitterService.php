@@ -29,12 +29,12 @@ class TwitterService
 
     public function getConfig(): array
     {
-        return $this->config;
+        return $this->config ?? $this->setConfig();
     }
 
     public function setClient(array $config = null): Client
     {
-        $clientConfig = $config ?? $this->config;
+        $clientConfig = $config ?? $this->setConfig();
         $this->client = new Client($clientConfig);
 
         return $this->client;
