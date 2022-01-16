@@ -7,12 +7,12 @@
         <title>Twitter component</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="antialiased">
-        <div id="root"></div>
+        <div id="root" class="my-4"></div>
     </body>
 </html>
