@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -10,14 +8,14 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a settings for Twitter account
      */
     public function index()
     {
+        // Get data from database
         $settings = Setting::all();
 
+        return view('settings', compact('settings'));
     }
 
     /**
@@ -29,6 +27,12 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        //
+        $settingValue = $request->input('setting_value');
+
+        // Set value from form and save
+        $setting->value = $settingValue;
+        $setting->save();
+
+        return redirect('settings');
     }
 }
