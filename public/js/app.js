@@ -5347,8 +5347,9 @@ function App() {
 
 
   var fetchTweets = function fetchTweets(filter) {
-    // if there is no filter, then do not send request
+    // if there is no filter, then do not send request and reset tweets
     if (filter.length === 0) {
+      setTweets([]);
       return;
     } // Set query parameters for endpoint
 
